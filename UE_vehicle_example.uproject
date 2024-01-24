@@ -13,11 +13,11 @@
 			"Enabled": true
 		},
 		{
-			"Name": "ChaosVehiclesPlugin",
+			"Name": "ModelingToolsEditorMode",
 			"Enabled": true
 		},
 		{
-			"Name": "ModelingToolsEditorMode",
+			"Name": "ChaosVehiclesPlugin",
 			"Enabled": true
 		}
 	],
