@@ -1,18 +1,27 @@
 # UE_vehicle_example
 
-задача - нужно сделать drivable систему на болид для Unreal Engine начиная с версии 4.27. 
+Blueprint first testcase that supposed to upload to Epic store. Initially made with 4.27 Chaos and then transferred to clean 4.27.
 
-Помимо возможности управлять автомобилем необходимо что бы были реализованы функции:
+<details>
+<summary>Initial Task</summary>
+Make drivable system with follow asset for Unreal Engine 4.27 and later.  
 
-1. Включить/выключить фары;
-2. При вращении колес вращался руль;
-3. Задние фары реагировали на торможение;
-4. Возможность кастомизации - замены рулей, деталей автомобиля (передних и задних спойлеров) и текстур;
-5. При торможении на асфальте должны появляться следы от колес.
+Features to make:
 
-Важно что бы физика автомобиля соответствовала реальному болиду по характеру поведения подвески и особенностей управления.
+1. On/off font lights;
+2. Steering angle changes when driving ;
+3. Back lights glowing on handbrake;
+4. Customization - textures (colors), asset, steering;
+5. Brake marks on handbrake;
 
-## time spent:
+Important to make most realistic drivable feeling as real physics.
+
+</details>
+
+
+
+<details> 
+<summary>Time spent and task explanation</summary>
 17.01 - 13:00 -> 19:20
 
 18.01 - 9:00 -> 21:50 - 00:20
@@ -23,99 +32,101 @@ all time spent: ~~23:30
 MVP result video: https://youtu.be/pnrgo59HWJI
 MVP development build: https://drive.google.com/drive/folders/14TGlnrqJo2biz9raHGHBSOPOt_atgaOp?usp=sharing
 
-## Задачи и проблемы
+## Tasks and issues
 
-_Раздел предназначен для демонстрации хода мысли во время выполнения задания_
+_Partition is supposed to show mindset and progress_
 
 **17.01**
 
-* Задачи
+* Tasks
 
-Разобраться с ассетом, импортировать и создать черновик bp с chaos vehicle // 13:00 > 19:20
+Explore Asset, Import and make draft bp с chaos vehicle // 13:00 > 19:20
 
-* Проблемы/решения
+* Issue/Solving
 
-Ассет в блендере без натянутых текстур - натянем в движке после того как поймем что работает база
+Asset in blender without textures - will work with this inside engine after draft completion.
 
-Нету рига под chaos vehicle - использую предлагаемый плагин но возникают проблемы с переносом всех мешей сцены в один скелет. Не понимаю как это должно правильно работать, закапываться не буду чтобы не тратить много времени.
+Asset without rig - using proposed blender plugin, but have issues with importing all assets in once. Not sure how it works, leaving to another time.
 
-Пытаемся завести чтобы работало на колесах + дне -> неработает физика для блупринта основаном на скелете, не решается с помощью симпл коллизии
+Trying make draft with wheels + downside -> Physics not working
 
 **18.01**
 
-* Задачи
+* Tasks
 
-Решить проблему с физикой блупринта основанного на скелете // 09:00 -> 10:30
+Solve problem with physics// 09:00 -> 10:30
 
-Сделать первую болванку для езды // 10:30 -> 11:40
+Make draft for drivable base// 10:30 -> 11:40
 
-Собрать и раскрасить болид // 11:40 -> 12:40
+Build all bolid parts and texturing// 11:40 -> 12:40
 
-Тюнинг физики // 12:40 -> 15:30
+Physics tuning // 12:40 -> 15:30
 
-Следы торможения // 15:30 -> 16:50 
+Brake marks // 15:30 -> 16:50
 
-Сделать движение руля вместе с колесами // 16:50 -> 18:10 ; 20:20 -> 21:50
+Steering angle when driving // 16:50 -> 18:10 ; 20:20 -> 21:50
 
-Задний свет при тормозе, фара, фикс джитера (моушн блюр на колесах) // 18:30 -> 20:20
+Back lights on handbrake, front light, wheel jitter cosmetic fix (just turning off motion blur) // 18:30 -> 20:20
 
+* Issue/Solving
 
-
-
-* Проблемы/решения
-
-Проблемы с физикой заключаются где-то в Physics type меша. Если использовать дефолт, то гравитация применяется, если кинематик как рекомендуют во всех гайдах - нет.
+Problem with phys contains somewhere in mesh type. If using default - gravity applied, if kinematic (as recommended everywhere) - no.
 
 //
 If you're attempting to follow this tutorial in UE4, note that when you switch your wheel simulation type to Kinematic, the vehicle will no longer fall in simulation or in game. But it will work in UE5. I don't know how the chaos vehicle plugin is supposed to work in 4.
 //
 
+In case we making asset for 4.27 and later - thinking.
 
-При учете что мы делаем ассет для для версий 4.27 и старше - думаем дальше
+4.27 chaos installed, seems all started to work near to supposed result. Continuing.
+4.27 chaos correct for Phys type kinematic and wheels collision response disabeled.
 
-Установил 4.27 chaos, похоже все начало работать близко к нужному результату. продолжаем с ним.
-В 4.27 chaos работает Physics Type Kinematic и корректно работает Collision response disabeled для колес
-
-промежуточная демонстрация результата: 
+Slice demonstration:
 https://youtu.be/fV5QxIVeGYw
 
-Непонятно почему задние колеса блюрятся при зажатом газе на больших оборотах.
+Not sure why wheels are jitter while increasing speed
 
-Пробовал реализовать движение руля через бп самостоятельно. изменив пивот для модели, но судя по всему придется работать с скелетом и добавлять руль в базу машины.
+Tried to realize steering angle myself, but got some problems.
 
-подтюнил физику, недоволен поворотом/заносами при торможении, но не буду отвелкаться
+Physics update, bad turn/drift on handbrake
 https://youtu.be/-LA0EMRPSDM
 
-Следы торможения реализованы через is sleeping для всех колес. С текущим сетапом физики выглядит клево
+Brake marks when wheels sleep.
 https://youtu.be/sHypG6pcbaI
 
-В процессе осознал что фар у болида нет, по этому сделал просто фонарь на кузове, чтобы продемонстрировать возможность. 
-Задняя фара реализовал через замену материала. Инстанс с мультиплаем эмиссива.
-Пофиксил джитер от моушн блюра на уровне консоли. Вероятно нужно будет переделывать под сборку.
+Realized that there is no front lights on car. Added directional light just to show result
+Back lights made with emissive scale on handbrake
+Wheels jitter fixed localy with console motion blur off
 https://youtu.be/p5SW8E6iIhg
 
-Еще раз попробовал сделать поворот руля, не очень красиво, но работает. Надо дополишить.
+Steer angle additional fixes 
 
 **18.01**
 
-* Задачи
+* Tasks
 
-Дотюнить руль == дотюнить физику транспорта, чтобы колеса не ходили так резко в некоторых кейсах.  
+Tune steer, tune physics.
 
-UI замены частей // 9:20 -> 10:00 ; 10:55 -> 11:50 ; 12:30 -> 14:00
+UI customization // 9:20 -> 10:00 ; 10:55 -> 11:50 ; 12:30 -> 14:00
 
-UI управления, Смена камеры (tps, fps) // 10:00 -> 10:50
+UI movement hint, camera change (tps, fps) // 10:00 -> 10:50
 
-Сборка MVP, небольшая косметика // 14:00 ->
+MVP build, little cosmetics // 14:00 ->
 
-* Проблемы/решения
+* Issue/Solving
 
-По хорошему замену частей делать через сокеты, но у меня нет правильного скелета для этого, по этому попробую сделать просто заменой ассетов.
-Также есть подозрение что сокеты будут работать по пивоту, а пивот мешей в нулевой координате общего меша, что заставит переделывать пивоты всех мешей.
+Motion blur fixed by console not solving shipped build issues. So, disabled motion blur in project settings. Got consult, it's common UE issue and could be solved with post process for each wheel.
+</details>
 
-Столкнулся с проблемой set input mode UI only, в нем нет реакции на клавишу закрытия. тогл меню кастомизации нужно либо чуть по другому сделать, либо найти как решается этот кейс.
-// решил проблему через disable input для pawn
+<details>
+<summary>Result</summary>
 
-Для сборки на 4.27 нужно vs 2019 :C 
+[Video](https://www.youtube.com/watch?v=WkBBqhItRSE) result for 4.27 Chaos
 
-как и думал, в сборке итоговой на колесах блюр, поищу способ пофиксить, вроде бы через постпроцессинг делается. 
+
+At the end transferred project to clean 4.27 without chaos vehicle system as required by Epic
+
+[Video](https://www.youtube.com/watch?v=jDHrG5UcQeE) result for clean 4.27
+
+</details>
+
