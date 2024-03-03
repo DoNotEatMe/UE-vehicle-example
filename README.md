@@ -1,4 +1,4 @@
-# UE_vehicle_example
+# UE-vehicle-example
 
 Blueprint first testcase that supposed to upload to Epic store. Initially made with 4.27 Chaos and then transferred to clean 4.27.
 
